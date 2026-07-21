@@ -1,0 +1,64 @@
+# Secrets and local configuration
+.env
+.env.*
+!.env.example
+*.key
+*.pem
+secrets/
+
+# Node
+node_modules/
+dist/
+.vite/
+*.tsbuildinfo
+npm-debug.log*
+yarn-debug.log*
+pnpm-debug.log*
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# Runtime and private data
+data/
+uploads/
+logs/
+output/
+outputs/
+temp/
+tmp/
+backups/
+*.db
+*.sqlite
+*.sqlite3
+
+# AI models and generated assets
+models/
+checkpoints/
+loras/
+embeddings/
+vae/
+generated/
+*.safetensors
+*.ckpt
+*.gguf
+*.onnx
+*.pt
+*.pth
+
+# IDE and operating system
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Docker overrides
+docker-compose.override.yml
