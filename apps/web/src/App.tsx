@@ -8,7 +8,8 @@ type ServiceStatus = {
 };
 
 const modules = [
-  { icon: "◈", title: "Liam Chat", copy: "Local conversation and model routing", state: "Planned" },
+  { icon: "◈", title: "Liam Chat", copy: "Local conversation and model routing", state: "Local brain" },
+  { icon: "↻", title: "Recursive Learning", copy: "Evidence-backed corrections, repeated reinforcement, and rollbackable learned behavior", state: "Preview" },
   { icon: "✦", title: "Knowledge Vault", copy: "Original notes with AI-organized summaries", state: "Planned" },
   { icon: "◎", title: "Image Studio", copy: "ComfyUI workflows through one calm interface", state: "Connected" },
   { icon: "⌁", title: "Ops Intelligence", copy: "Tickets, procedures, and customer-service tools", state: "Planned" },
@@ -46,9 +47,9 @@ export default function App() {
       </header>
 
       <section className="hero" id="top">
-        <p className="eyebrow">LOCAL INTELLIGENCE · HUMAN CONTROL</p>
+        <p className="eyebrow">CLOUD PREVIEW · LOCAL INTELLIGENCE · HUMAN CONTROL</p>
         <h1>Your AI world,<br /><span>connected.</span></h1>
-        <p className="hero-copy">One private place for conversation, knowledge, creative tools, and the workflows that make work lighter.</p>
+        <p className="hero-copy">BlueVerse in the cloud for portal access, while Liam’s memory, models, learning authority, and local tools remain on the private BlueVerse runtime.</p>
         <div className="hero-actions">
           <a className="primary-button" href="#modules">Enter BlueVerse</a>
           <button className="ghost-button" type="button" onClick={() => void refresh()}>Check connections</button>
@@ -70,11 +71,11 @@ export default function App() {
         <div>
           <p className="eyebrow">SYSTEM PULSE</p>
           <h2 id="connections-title">Connected services</h2>
-          <p>These checks stay on your network. An unavailable service does not expose it to the internet.</p>
+          <p>This cloud shell does not expose your local services. Local health checks only work after a deliberately authenticated BlueVerse gateway is connected.</p>
         </div>
         <div className="service-list">
           {loading && <p className="empty-state">Checking the BlueVerse current…</p>}
-          {!loading && services.length === 0 && <p className="empty-state">Portal API is not reachable yet.</p>}
+          {!loading && services.length === 0 && <p className="empty-state">Local BlueVerse API is not connected to this cloud shell.</p>}
           {services.map((service) => (
             <div className="service-row" key={service.name}>
               <span className={service.reachable ? "status-dot online" : "status-dot"} />
@@ -85,7 +86,7 @@ export default function App() {
         </div>
       </section>
 
-      <footer>BlueVerse AI Portal · Foundation 0.1</footer>
+      <footer>BlueVerse AI Portal · Cloud shell preview · Recursive Learning V1</footer>
     </main>
   );
 }
