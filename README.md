@@ -1,81 +1,49 @@
-# BlueVerse AI Portal
+# BlueVerse Remote Portal
 
-A private, local-first AI workspace that connects chat, knowledge, image generation, and practical business workflows behind one calm interface.
+A Vercel-hosted remote interface for Luke's private, local-first BlueVerse AI runtime.
 
-> Status: foundation scaffold. The first working slice provides a BlueVerse dashboard, API health checks, and configuration hooks for Ollama, Open WebUI, and ComfyUI. The existing portal source can be merged into this structure when it is ready.
+> The Vercel deployment is the window, not the brain. Liam's conversations, durable memory, Cognitive Core, Recursive Learning, models, and local tools remain on the private BlueVerse workstation.
 
-## What this repository owns
+## Current remote features
 
-- The BlueVerse user experience and visual system
-- Portal orchestration and business logic
-- Knowledge Vault and workflow features added here
-- Installation, configuration, documentation, and tests
+- Connect to a temporary BlueVerse Remote Gateway using the connection details shown by the local launcher.
+- Chat with the same local Liam runtime.
+- Continue existing conversations stored in the local BlueVerse database.
+- See the active local model, durable-memory count, cognition state, and promoted recursive-learning lessons.
+- Choose Fast, Main, or Deep for an individual remote turn without changing the workstation's persistent profile.
 
-Open WebUI, Ollama, ComfyUI, models, LoRAs, and custom nodes remain separate dependencies. They are not copied into this repository.
+## Security boundary
 
-## Quick start
+The remote client does not contain the BlueVerse backend. The temporary gateway exposes only health, learning status, conversation read access, and chat. It does not expose shell, files, desktop control, browser control, operator grants, the normal portal API, raw model services, media services, or voice services.
 
-### Requirements
+Connection credentials are entered by the user and are not stored in this repository or embedded in the Vercel build. The canonical BlueVerse runtime and gateway implementation live in the private `jasperboi89/blueverse-ai` repository.
 
-- Docker Desktop with Docker Compose
-- Git
-- Optional services running on your network: Ollama, Open WebUI, and ComfyUI
+## Vercel
 
-### Run it
+This repository contains the Vercel-facing React/Vite application under `apps/web`. The root `vercel.json` builds that application.
 
-1. Copy `.env.example` to `.env`.
-2. Adjust the service URLs if the defaults do not match your machines.
-3. Start the portal:
+## Local development
 
-   ```powershell
-   .\scripts\start.ps1
-   ```
+```powershell
+cd apps/web
+npm ci
+npm run dev
+```
 
-   Or on macOS/Linux:
-
-   ```bash
-   ./scripts/start.sh
-   ```
-
-4. Open <http://localhost:4173>.
-
-The API health endpoint is available at <http://localhost:8787/api/health>.
-
-## Configuration
-
-| Variable | Default | Purpose |
-|---|---|---|
-| `BLUEVERSE_ENV` | `development` | Runtime environment label |
-| `PORTAL_API_PORT` | `8787` | Host port for the API |
-| `PORTAL_WEB_PORT` | `4173` | Host port for the web app |
-| `OLLAMA_URL` | `http://host.docker.internal:11434` | Ollama endpoint |
-| `OPEN_WEBUI_URL` | `http://host.docker.internal:3000` | Open WebUI endpoint |
-| `COMFYUI_URL` | `http://host.docker.internal:8188` | ComfyUI endpoint |
-
-Never commit `.env`. It may eventually contain API keys, database credentials, and private network details.
+A functional remote session also requires the private BlueVerse runtime and its remote gateway to be running.
 
 ## Repository map
 
 ```text
 apps/
-  api/                 FastAPI orchestration service
-  web/                 React + Vite BlueVerse interface
+  web/                 Vercel remote client
+  api/                 Legacy foundation API scaffold
 docs/
-  ARCHITECTURE.md      System boundaries and data flow
+  ARCHITECTURE.md      Original foundation architecture notes
   LICENSE-INVENTORY.md Third-party license tracking
-  ROADMAP.md           Practical build sequence
-scripts/               Local startup helpers
-.github/workflows/     Automated validation
+  ROADMAP.md           Earlier roadmap
+vercel.json            Vercel web build configuration
 ```
-
-## Safety and privacy defaults
-
-- The repository is intended to remain private during development.
-- Models, generated media, chats, uploads, databases, and secrets are ignored by Git.
-- AI services are referenced by URL rather than bundled or redistributed.
-- Internet-facing deployment is intentionally not configured yet.
-
-See [SECURITY.md](SECURITY.md) before connecting real customer or company data.
 
 ## Ownership
 
