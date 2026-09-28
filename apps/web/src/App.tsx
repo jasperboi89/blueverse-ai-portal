@@ -46,7 +46,6 @@ type ChatPayload = {
 };
 
 const URL_KEY = "blueverse.remote.gatewayUrl";
-const TOKEN_KEY = "blueverse.remote.gatewayToken";
 
 const cleanUrl = (value: string) => value.trim().replace(/\/+$/, "");
 
@@ -138,7 +137,6 @@ export default function App() {
         setHealth(nextHealth);
         setProfile(["fast", "main", "deep"].includes(nextHealth.activeProfile) ? nextHealth.activeProfile : "main");
         sessionStorage.setItem(URL_KEY, clean);
-        sessionStorage.setItem(TOKEN_KEY, secret.trim());
         const list = await gatewayFetch<{ conversations: Conversation[] }>(
           clean,
           secret.trim(),
@@ -157,15 +155,11 @@ export default function App() {
 
   useEffect(() => {
     const savedUrl = sessionStorage.getItem(URL_KEY) ?? "";
-    const savedToken = sessionStorage.getItem(TOKEN_KEY) ?? "";
     if (savedUrl) setGatewayUrl(savedUrl);
-    if (savedToken) setToken(savedToken);
-    if (savedUrl && savedToken) void connect(savedUrl, savedToken);
   }, [connect]);
 
   const disconnect = () => {
     sessionStorage.removeItem(URL_KEY);
-    sessionStorage.removeItem(TOKEN_KEY);
     setHealth(null);
     setConversations([]);
     setMessages([]);
@@ -312,8 +306,8 @@ export default function App() {
             </button>
 
             <p className="security-note">
-              The token is kept in this browser session only. It is not committed
-              to GitHub or embedded in the Vercel build.
+              The token stays only in this page's memory and is discarded on refresh or close.
+              It is never committed to GitHub or embedded in the Vercel build.
             </p>
             {error && <p className="error-box">{error}</p>}
           </form>
